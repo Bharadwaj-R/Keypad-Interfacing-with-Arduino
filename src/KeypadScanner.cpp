@@ -1,4 +1,4 @@
-#include "KeyboardScanner.h"
+#include "KeypadScanner.h"
 
 // First 4 bits give the column, next 4 bits give the row
 

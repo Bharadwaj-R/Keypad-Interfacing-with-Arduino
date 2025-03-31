@@ -5,6 +5,10 @@ bool currentLEDState = true;
 uint32_t timeOfLastLEDToggle = 0;
 uint16_t timeInPreviousLEDState = 0;
 
+void SetupLED()
+{
+    pinMode(LEDPIN, OUTPUT);
+}
 
 void ChangeLEDState()
 {

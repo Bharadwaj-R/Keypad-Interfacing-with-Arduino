@@ -2,17 +2,18 @@
 
 #include "EventChecker.h"
 #include "EventServiceProvider.h"
-#include "KeyboardScanner.h"
+#include "KeypadScanner.h"
 #include "LEDHandler.h"
 
 void setup()
 {
-  pinMode(LEDPIN, OUTPUT);
-  
+  SetupLED();
   SetupKeypad();
   Serial.begin(9600);
 }
 
 void loop()
 {
+  char keyInput = ScanKeypad();
+  Serial.println(keyInput);
 }
