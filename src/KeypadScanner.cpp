@@ -1,6 +1,6 @@
 #include "KeypadScanner.h"
 
-// First 4 bits give the column, next 4 bits give the row
+// First 4 bits gives the column, next 4 bits gives the row
 
 #define BUTTON_1_PRESSED B10001000
 #define BUTTON_2_PRESSED B01001000
@@ -42,6 +42,7 @@ uint8_t keyCode = 0;
 uint32_t lastActivity = 0;
 uint32_t currentTime = 0;
 
+/*
 bool flagButton_0_Pressed = false;
 bool flagButton_1_Pressed = false;
 bool flagButton_2_Pressed = false;
@@ -58,6 +59,7 @@ bool flagButton_A_Pressed = false;
 bool flagButton_B_Pressed = false;
 bool flagButton_C_Pressed = false;
 bool flagButton_D_Pressed = false;
+*/
 
 void SetupKeypad()
 {
@@ -69,197 +71,80 @@ void SetupKeypad()
 
 char ScanKeypad()
 {
-    while(true)
+    for(scan = 0; scan < 4; scan++)
     {   
-        if(scan = 255) scan = 3; 
         digitalWrite(PORTD, columnScan[scan%4]);
         rowInput = PINB;
-        keyCode = columnScan[scan%4] ^ rowInput;
-
-        currentTime = millis();
-        
+        keyCode = columnScan[scan%4] ^ rowInput;        
 
         switch (keyCode)
         {
         case BUTTON_0_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_0_Pressed)
-        {
-            flagButton_0_Pressed = false;
-            lastActivity = currentTime;
-            return('0');
-        }
-        flagButton_0_Pressed = true;
+            return '0';
         break;
         
         case BUTTON_1_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_1_Pressed)
-        {
-            flagButton_1_Pressed = false;
-            lastActivity = currentTime;
-            return('1');
-        }
-        flagButton_1_Pressed = true;
+            return '1';
         break;
         
         case BUTTON_2_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_2_Pressed)
-        {
-            flagButton_2_Pressed = false;
-            lastActivity = currentTime;
-            return('2');
-        }
-        flagButton_2_Pressed = true;
+            return '2';
         break;
         
         case BUTTON_3_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_3_Pressed)
-        {
-            flagButton_3_Pressed = false;
-            lastActivity = currentTime;
-            return('3');
-        }
-        flagButton_3_Pressed = true;
+            return '3';
         break;
         
         case BUTTON_4_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_4_Pressed)
-        {
-            flagButton_4_Pressed = false;
-            lastActivity = currentTime;
-            return('4');
-        }
-        flagButton_4_Pressed = true;
+            return '4';
         break;
         
         case BUTTON_5_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_5_Pressed)
-        {
-            flagButton_5_Pressed = false;
-            lastActivity = currentTime;
-            return('5');
-        }
-        flagButton_5_Pressed = true;
+            return '5';
         break;
         
         case BUTTON_6_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_6_Pressed)
-        {
-            flagButton_6_Pressed = false;
-            lastActivity = currentTime;
-            return('6');
-        }
-        flagButton_6_Pressed = true;
+            return '6';
         break;
         
         case BUTTON_7_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_7_Pressed)
-        {
-            flagButton_7_Pressed = false;
-            lastActivity = currentTime;
-            return('7');
-        }
-        flagButton_7_Pressed = true;
+            return '7';
         break;
         
         case BUTTON_8_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_8_Pressed)
-        {
-            flagButton_8_Pressed = false;
-            lastActivity = currentTime;
-            return('8');
-        }
-        flagButton_8_Pressed = true;
+            return '8';
         break;
         
         case BUTTON_9_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_9_Pressed)
-        {
-            flagButton_9_Pressed = false;
-            lastActivity = currentTime;
-            return('9');
-        }
-        flagButton_9_Pressed = true;
+            return '9';
         break;
 
         case BUTTON_star_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_star_Pressed)
-        {
-            flagButton_star_Pressed = false;
-            lastActivity = currentTime;
-            return('*');
-        }
-        flagButton_star_Pressed = true;
+            return '*';
         break;
         
         case BUTTON_hash_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_hash_Pressed)
-        {
-            flagButton_hash_Pressed = false;
-            lastActivity = currentTime;
-            return('#');
-        }
-        flagButton_hash_Pressed = true;
+            return '#';
         break;
         
         case BUTTON_A_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_A_Pressed)
-        {
-            flagButton_A_Pressed = false;
-            lastActivity = currentTime;
-            return('A');
-        }
-        flagButton_A_Pressed = true;
+            return 'A';
         break;
         
         case BUTTON_B_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_B_Pressed)
-        {
-            flagButton_B_Pressed = false;
-            lastActivity = currentTime;
-            return('B');
-        }
-        flagButton_B_Pressed = true;
+            return 'B';
         break;
         
         case BUTTON_C_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_C_Pressed)
-        {
-            flagButton_C_Pressed = false;
-            lastActivity = currentTime;
-            return('C');
-        }
-        flagButton_C_Pressed = true;
+            return 'C';
         break;
         
         case BUTTON_D_PRESSED:
-        if(currentTime - lastActivity > TIME_INTERVAL && flagButton_D_Pressed)
-        {
-            flagButton_D_Pressed = false;
-            lastActivity = currentTime;
-            return('D');
-        }
-        flagButton_D_Pressed = true;
+            return 'D';
         break;
 
         default:
-        flagButton_0_Pressed =      false;
-        flagButton_1_Pressed =      false;
-        flagButton_2_Pressed =      false;
-        flagButton_3_Pressed =      false;
-        flagButton_4_Pressed =      false;
-        flagButton_5_Pressed =      false;
-        flagButton_6_Pressed =      false;
-        flagButton_7_Pressed =      false;
-        flagButton_8_Pressed =      false;
-        flagButton_9_Pressed =      false;
-        flagButton_star_Pressed =   false;
-        flagButton_hash_Pressed =   false;
-        flagButton_A_Pressed =      false;
-        flagButton_B_Pressed =      false;
-        flagButton_C_Pressed =      false;
-        flagButton_D_Pressed =      false;
-        scan++;
-        lastActivity = currentTime;
+            return '\0';
         break;
         
         }
