@@ -63,7 +63,6 @@ void SetupKeypad()
 {
     pinMode(PORTB, INPUT_PULLUP);  // the whole port B will read 1 by default B11111111
     pinMode(PORTD, OUTPUT);
-    digitalWrite(PORTD, B11110000);
     digitalWrite(PORTD, B00000000);
 }
 

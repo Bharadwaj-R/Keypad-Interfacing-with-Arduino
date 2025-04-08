@@ -10,8 +10,8 @@ void ServiceKeyInput(char keyInput)
 {
     Serial.println(keyInput);
     ChangeLEDState();
-    UpdateLastToggleActivityTime();
     DisplayPreviousLEDStateTime();
+    UpdateLastToggleActivityTime();
     State = ScanReady;  // Move from Key Pressed to Scan Ready for the next input
 }
 

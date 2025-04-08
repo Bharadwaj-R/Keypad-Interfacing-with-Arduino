@@ -15,6 +15,19 @@ void StateMachine()
 
     switch(State)
     {
+
+        case ScanReady:
+            Serial.println(State);
+            if (EventKeyPress() && !flagKeyPress) 
+            {
+                ServiceKeyPress();
+                flagKeyPress = true;
+                lastActivity = currentTime;
+                prevKeyPress = newKeyPress;
+            }
+        break;
+
+
         case KeyPressed:
             Serial.println(State);
             if (EventKeyInput()) 
@@ -34,17 +47,7 @@ void StateMachine()
             else if (EventWaitStage()) ServiceWaitStage();
         break;
 
-        case ScanReady:
-            Serial.println(State);
-            if (EventKeyPress() && !flagKeyPress) 
-            {
-                ServiceKeyPress();
-                flagKeyPress = true;
-                lastActivity = currentTime;
-                prevKeyPress = newKeyPress;
-            }
-        break;
-
+        
         default:
             State = ScanReady;
     }

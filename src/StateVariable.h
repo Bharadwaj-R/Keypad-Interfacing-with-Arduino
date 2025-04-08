@@ -1,5 +1,5 @@
 enum StateVariable
 {
-    KeyPressed,
-    ScanReady
+    ScanReady,
+    KeyPressed
 } State;

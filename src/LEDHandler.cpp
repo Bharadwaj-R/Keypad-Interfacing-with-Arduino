@@ -19,7 +19,7 @@ void ChangeLEDState()
 
 void DisplayPreviousLEDStateTime()
 {
-    timeInPreviousLEDState = timeOfLastLEDToggle - currentTime;
+    timeInPreviousLEDState = currentTime - timeOfLastLEDToggle;
     Serial.println(timeInPreviousLEDState);
 }
 
