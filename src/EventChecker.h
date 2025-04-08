@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include "EventServiceProvider.h"
 #include "KeypadScanner.h"
-#include "LEDHandler.h"
 
 void StateMachine();
 

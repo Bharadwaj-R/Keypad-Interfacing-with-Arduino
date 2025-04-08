@@ -10,35 +10,50 @@ uint32_t lastActivity = 0;
 
 void StateMachine()
 {
+    currentTime = millis();
+    newKeyPress = ScanKeypad();
+
     switch(State)
     {
-        case Init:
-            Serial.println("In Init State");
-            if (EventKeyPress) ServiceKeyPress();
-        break;
-
         case KeyPressed:
-            Serial.println("In KeyPressed State");
-            if (EventKeyInput) ServiceKeyInput();
-            else if (EventFalseKey()) ServiceFalseKey();
+            Serial.println(State);
+            if (EventKeyInput()) 
+            {
+                ServiceKeyInput(newKeyPress);
+                flagKeyPress = false;
+                lastActivity = currentTime;
+            }
+            
+            else if (EventFalseKey()) 
+            {
+                ServiceFalseKey();
+                flagKeyPress = false;
+                lastActivity = currentTime;
+            }
+            
             else if (EventWaitStage()) ServiceWaitStage();
         break;
 
         case ScanReady:
-            Serial.println("In ScanReady State");
-            if (EventKeyPress()) ServiceKeyPress();
+            Serial.println(State);
+            if (EventKeyPress() && !flagKeyPress) 
+            {
+                ServiceKeyPress();
+                flagKeyPress = true;
+                lastActivity = currentTime;
+                prevKeyPress = newKeyPress;
+            }
         break;
 
         default:
-        State = Init;
+            State = ScanReady;
     }
 }
 
 
 bool EventKeyPress()
 {
-    newKeyPress = ScanKeypad();
-    if (newKeyPress != '\0' && flagKeyPress)
+    if (newKeyPress != '\0')
     return true;
     else
     return false;

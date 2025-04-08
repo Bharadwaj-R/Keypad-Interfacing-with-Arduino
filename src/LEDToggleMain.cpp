@@ -12,6 +12,7 @@ void setup()
   {
     Serial.println("Keypad Initialized. Ready to operate.");
   }
+  digitalWrite(LEDPIN, HIGH);
 }
 
 void loop()
